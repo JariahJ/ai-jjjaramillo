@@ -4,6 +4,7 @@ import random
 from matchup import Matchup
 from hungrytigeragent import HungryTigerAgent
 from stats import Stats
+from sidehugginggoat import SideHuggingGoat
 
 matchup = Matchup()
 # matchup.tigerAgent = HungryTigerAgent(matchup.game)
