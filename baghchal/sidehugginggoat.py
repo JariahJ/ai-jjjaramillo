@@ -11,12 +11,12 @@ class SideHuggingGoat(Agent):
     def propose(self) -> Move:
         moves = self.game.goatMoves()
         for move in moves:
-            if move._toCol == 0:
+            if move._toCol == move._fromCol and move._toCol == 0:
                 return move
-            if move._toCol == Const.COLS-1:
+            if move._toCol == move._fromCol and move._toCol == Const.COLS-1:
                 return move
-            if move._toRow == 0:
+            if move._toRow == move._fromRow and move._toRow ==  0:
                 return move
-            if move._toRow == Const.ROWS-1:
+            if move._toRow == move._fromRow and move._toRow == Const.ROWS-1:
                 return move
         return random.choice(moves)       

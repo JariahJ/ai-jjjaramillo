@@ -7,8 +7,8 @@ from stats import Stats
 from sidehugginggoat import SideHuggingGoat
 
 matchup = Matchup()
-# matchup.tigerAgent = HungryTigerAgent(matchup.game)
-matchup.goatAgent = sideHuggingGoat(matchup.game)
+matchup.tigerAgent = HungryTigerAgent(matchup.game)
+matchup.goatAgent = SideHuggingGoat(matchup.game)
 stats = Stats(matchup, 1000)
 stats.playAll()
 stats.summarize()
