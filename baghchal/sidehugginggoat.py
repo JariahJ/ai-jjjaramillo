@@ -5,9 +5,9 @@ from move import Move
 from typing import List
 import random
 
-class sideHuggingGoat(Agent):
+class SideHuggingGoat(Agent):
     def__init__(self, game : Game):
-        super(sideHuggingGoat, self).__init__(game, Const.MARK_TIGER)
+        super(SideHuggingGoat, self).__init__(game, Const.MARK_TIGER)
     def propose(self) -> Move:
         moves = self.game.goatMoves()
         for move in moves:
