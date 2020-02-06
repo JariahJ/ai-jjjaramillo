@@ -6,7 +6,7 @@ from typing import List
 import random
 
 class SideHuggingGoat(Agent):
-    def__init__(self, game : Game):
+    def __init__(self, game : Game):
         super(SideHuggingGoat, self).__init__(game, Const.MARK_TIGER)
     def propose(self) -> Move:
         moves = self.game.goatMoves()
