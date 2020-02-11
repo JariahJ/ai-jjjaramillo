@@ -9,7 +9,7 @@ from sidehugginggoat import SideHuggingGoat
 matchup = Matchup()
 #matchup.tigerAgent = HungryTigerAgent(matchup.game)
 matchup.goatAgent = SideHuggingGoat(matchup.game)
-while not matchup.game.over
+while not matchup.game.over:
     print(matchup.game)
 
 #stats = Stats(matchup, 1000)
