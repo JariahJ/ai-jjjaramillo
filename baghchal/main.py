@@ -10,7 +10,7 @@ matchup = Matchup()
 #matchup.tigerAgent = HungryTigerAgent(matchup.game)
 matchup.goatAgent = SideHuggingGoat(matchup.game)
 while not matchup.game.over:
-    matchup.game.play(matchup.goatAgent.propose())
+    matchup.turn()
     print(matchup.game)
 
 #stats = Stats(matchup, 1000)
