@@ -7,7 +7,7 @@ import random
 
 class SideHuggingGoat(Agent):
     def __init__(self, game : Game):
-        super(SideHuggingGoat, self).__init__(game, Const.MARK_TIGER)
+        super(SideHuggingGoat, self).__init__(game, Const.MARK_GOAT)
     def propose(self) -> Move:
         moves = self.game.goatMoves()
         for move in moves:
