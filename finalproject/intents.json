@@ -1,0 +1,40 @@
+{"intents": [
+        {"tag": "greeting",
+         "patterns": ["Hi", "How are you", "Is anyone there?", "Hello", "Good day"],
+         "responses": ["Hello, thanks for visiting Movie Suggester 2000", "Good to see you again", "Hi, ask me some movie genre to recommend"],
+         "context_set": ""
+        },
+        {"tag": "goodbye",
+         "patterns": ["Bye", "See you later", "Goodbye"],
+         "responses": ["See you later, thanks for visiting Movie Suggester 2000", "Have a nice day, and enjoy the show", "Bye! Come back again soon."]
+        },
+        {"tag": "thanks",
+         "patterns": ["Thanks", "Thank you", "That's helpful"],
+         "responses": ["Happy to help!", "Any time!", "My pleasure", "Enjoy!"]
+        },
+        {"tag": "scary",
+         "patterns": ["What are good scary movies?", "Do you know any scary movies?", "What horror movies do you recommend?" ],
+         "responses": ["We recommend The Shining", "We suggest watching Friday the 13th(1980)"]
+        },
+        {"tag": "action",
+         "patterns": ["What are good action movies?", "Do you know any action movies?", "What horror movies do you recommend?" ],
+         "responses": ["We recommend Die Hard", "We suggest Mission Impossible"]
+        },
+        {"tag": "western",
+         "patterns": ["What's a good cowboy movie?", "What western do you recommend?", "John wayne" ],
+         "responses": ["You should definitely give Tombstone a watch", "The Searchers is one of my favorites", "We strongly suggest watching Unforgiven"]
+        },
+        {"tag": "drama",
+         "patterns": ["What's a good drama to watch?", "Tell me good drama movies", "What dramas do you recommend?"],
+         "responses": ["Brokeback Mountain is a fantastic movie", "Schindler's List will top your drama jar", "We suggest watching Dunkirk"]
+        },
+        {"tag": "epic",
+         "patterns": ["What's a good epic?", "Do you recommend any epics?", "Enlighten me on a good epic", "What long movies do you suggest?" ],
+         "responses": ["Lord of the Rings is a super duper long epic", "Ben-Hur tops my lil list of epics", "Gone with the Windy is pretty darn long, give it a watch"],
+        },
+        {"tag": "long",
+         "patterns": ["today"],
+         "responses": ["For rentals today please call 1-800-MYMOPED", "Same-day rentals please call 1-800-MYMOPED"],
+        }
+   ]
+}
