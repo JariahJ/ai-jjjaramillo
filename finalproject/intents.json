@@ -30,11 +30,11 @@
         },
         {"tag": "epic",
          "patterns": ["What's a good epic?", "Do you recommend any epics?", "Enlighten me on a good epic", "What long movies do you suggest?" ],
-         "responses": ["Lord of the Rings is a super duper long epic", "Ben-Hur tops my lil list of epics", "Gone with the Windy is pretty darn long, give it a watch"],
+         "responses": ["Lord of the Rings is a super duper long epic", "Ben-Hur tops my lil list of epics", "Gone with the Windy is pretty darn long, give it a watch"]
         },
         {"tag": "long",
          "patterns": ["today"],
-         "responses": ["For rentals today please call 1-800-MYMOPED", "Same-day rentals please call 1-800-MYMOPED"],
+         "responses": ["For rentals today please call 1-800-MYMOPED", "Same-day rentals please call 1-800-MYMOPED"]
         }
    ]
 }
