@@ -66,14 +66,61 @@ training = np.array(training)
 training_x = list(training[:,0])
 training_y = list(training[:,1])
 
+#conver to numpy arrays
 x_train = np.array(training_x)
 y_train = np.array(training_y)
 
 
 model = keras.Sequential()
 model.add(keras.layers.Dense(9, input_dim=44,  activation = 'relu'))
+#model.add(keras.layers.Dense(8))
 
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-model.fit(x_train, y_train, epochs = 10)
+model.fit(x_train, y_train, epochs = 1000, batch_size = 8)
 
+
+#for users sentence they input
+def clean_input(input):
+        words_of_sentence = nltk.word_tokenize(input)
+        words_of_sentence = [stemmer.stem(word.lower()) for word in words_of_sentence]
+        return words_of_sentence
+    
+def collection_of_words(input, words, show_details=False):
+    words_of_sentence = clean_input(input)
+    collection = [0]*len(words)
+    for s in words_of_sentence:
+        for i,w in enumerate(words):
+            if w==s:
+                collection[i] = 1
+                if show_details:
+                    print("found in collection: %s" % w )
+    return(np.array(collection))
+
+test = collection_of_words("what drama do you recommend?", words)
+
+#########################################################
+
+ERROR = 0.25
+def classify(sentence):
+        x = collection_of_words(sentence, words)
+        answer = model.predict(x)[0]
+        answer = [[i, r] for i,r in enumerate(answer) if r>ERROR]
+        
+        answer.sort(key=lambda x: x[1], reverse=True)
+        return_list = []
+        for a in answer:
+            return_list.append((classes[r[0]], r[1]))
+        return return_list
+    
+def response(sentence, user='123', show_details=False):
+    answer = classify(sentence)
+    if answer:
+        while answer:
+            for i in intents['intents']:
+                if i['tag'] == answer[0][0]:
+                    #selects a resonse from the intent
+                    return print(random.choice(i['responses']))
+            results.pop(0)
+
+response("what are good action movies")
