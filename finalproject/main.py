@@ -6,6 +6,7 @@ stemmer = LancasterStemmer()
 
 import numpy as np
 import tensorflow as tf
+from tensorflow import keras
 import random
 
 import json
@@ -66,3 +67,13 @@ training_y = list(training[:,1])
 
 print(training_x)
 print(training_y)
+
+tf.reset_default_graph()
+
+#training_x.shape
+
+model = keras.Sequential([
+	keras.layers.Flatten(input_shape=None),
+	keras.layers.Dense(128, activation='relu'),
+	keras.layers.Dense(10)
+])
