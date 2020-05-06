@@ -37,4 +37,32 @@ print(len(documents), "documents")
 print(len(classes), "classes", classes)
 print(len(words), "unique stemmed words", words)
 
+training = []
+output = []
 
+output_empty = [0] * len(classes)
+
+for document in documents:
+	bag = []
+	pattern_words = document[0]
+	pattern_words = [stemmer.stem(word.lower()) for word in pattern_words]
+
+	for i in range(len(words)):
+		if words[i] in pattern_words:
+			bag.append(1)
+		else:
+			bag.append(0)
+
+	output_row = list(output_empty)
+	output_row[classes.index(document[1])] = 1
+
+	training.append([bag, output_row])
+
+random.shuffle(training)
+training = np.array(training)
+
+training_x = list(training[:,0])
+training_y = list(training[:,1])
+
+print(training_x)
+print(training_y)
