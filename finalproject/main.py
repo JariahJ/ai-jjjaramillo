@@ -73,7 +73,7 @@ y_train = np.array(training_y)
 
 model = keras.Sequential()
 model.add(keras.layers.Dense(9, input_dim=44,  activation = 'relu'))
-#model.add(keras.layers.Dense(8))
+model.add(keras.layers.Dense(9, activation = 'softmax'))
 
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 
@@ -95,7 +95,7 @@ def collection_of_words(input, words, show_details=False):
                 collection[i] = 1
                 if show_details:
                     print("found in collection: %s" % w )
-    return(np.array(collection))
+    return(np.array([collection]))
 
 test = collection_of_words("what drama do you recommend?", words)
 
@@ -104,13 +104,13 @@ test = collection_of_words("what drama do you recommend?", words)
 ERROR = 0.25
 def classify(sentence):
         x = collection_of_words(sentence, words)
-        answer = model.predict(x)[0]
+        answer = model.predict([x])[0]
         answer = [[i, r] for i,r in enumerate(answer) if r>ERROR]
         
         answer.sort(key=lambda x: x[1], reverse=True)
         return_list = []
         for a in answer:
-            return_list.append((classes[r[0]], r[1]))
+            return_list.append((classes[a[0]], a[1]))
         return return_list
     
 def response(sentence, user='123', show_details=False):
@@ -123,4 +123,4 @@ def response(sentence, user='123', show_details=False):
                     return print(random.choice(i['responses']))
             results.pop(0)
 
-response("what are good action movies")
+response("what are good drama movies")
