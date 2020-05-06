@@ -73,7 +73,14 @@ tf.reset_default_graph()
 #training_x.shape
 
 model = keras.Sequential([
-	keras.layers.Flatten(input_shape=None),
+	keras.layers.Flatten(input_shape=(28,44)),
 	keras.layers.Dense(128, activation='relu'),
 	keras.layers.Dense(10)
 ])
+
+model.compile(optimizer='adam',
+		loss=keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+		metrics=['accuracy'])
+
+model.fit(training_x, training_y, epochs=10)
+
