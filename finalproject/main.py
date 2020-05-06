@@ -9,6 +9,7 @@ import tensorflow as tf
 from tensorflow import keras
 import random
 
+
 import json
 with open('intents.json') as json_data:
 	intents = json.load(json_data)
@@ -44,20 +45,20 @@ output = []
 output_empty = [0] * len(classes)
 
 for document in documents:
-	bag = []
-	pattern_words = document[0]
-	pattern_words = [stemmer.stem(word.lower()) for word in pattern_words]
+    bag = []
+    pattern_words = document[0]
+    pattern_words = [stemmer.stem(word.lower()) for word in pattern_words]
 
-	for i in range(len(words)):
-		if words[i] in pattern_words:
-			bag.append(1)
-		else:
-			bag.append(0)
+    for i in range(len(words)):
+        if words[i] in pattern_words:
+            bag.append(1)
+        else:
+            bag.append(0)
 
-	output_row = list(output_empty)
-	output_row[classes.index(document[1])] = 1
+    output_row = list(output_empty)
+    output_row[classes.index(document[1])] = 1
 
-	training.append([bag, output_row])
+    training.append([bag, output_row])
 
 random.shuffle(training)
 training = np.array(training)
@@ -65,22 +66,14 @@ training = np.array(training)
 training_x = list(training[:,0])
 training_y = list(training[:,1])
 
-print(training_x)
-print(training_y)
+x_train = np.array(training_x)
+y_train = np.array(training_y)
 
-tf.reset_default_graph()
 
-#training_x.shape
+model = keras.Sequential()
+model.add(keras.layers.Dense(9, input_dim=44,  activation = 'relu'))
 
-model = keras.Sequential([
-	keras.layers.Flatten(input_shape=(28,44)),
-	keras.layers.Dense(128, activation='relu'),
-	keras.layers.Dense(10)
-])
+model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-model.compile(optimizer='adam',
-		loss=keras.losses.SparseCategoricalCrossentropy(from_logits=True),
-		metrics=['accuracy'])
-
-model.fit(training_x, training_y, epochs=10)
+model.fit(x_train, y_train, epochs = 10)
 
