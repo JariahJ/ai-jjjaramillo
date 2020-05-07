@@ -11,7 +11,7 @@ import random
 
 
 import json
-with open('intents.json') as json_data:
+with open('movies.json') as json_data:
 	intents = json.load(json_data)
 
 
@@ -21,8 +21,8 @@ classes = []
 documents = []
 words_to_ignore = ['?']
 
-for intent in intents['intents']:
-    for pattern in intent['patterns']:
+for intent in intents['testData']:
+    for pattern in intent['questions']:
         list_of_words = nltk.word_tokenize(pattern)
         words.extend(list_of_words)
         documents.append((list_of_words, intent['tag']))
@@ -72,12 +72,12 @@ y_train = np.array(training_y)
 
 
 model = keras.Sequential()
-model.add(keras.layers.Dense(9, input_dim=44,  activation = 'relu'))
-model.add(keras.layers.Dense(9, activation = 'softmax'))
+model.add(keras.layers.Dense(9, input_dim=3359,  activation = 'relu')) #44
+model.add(keras.layers.Dense(5, activation = 'softmax')) #9
 
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-model.fit(x_train, y_train, epochs = 1000, batch_size = 8)
+model.fit(x_train, y_train, epochs = 30, batch_size = 8)
 
 
 #for users sentence they input
@@ -117,10 +117,13 @@ def response(sentence, user='123', show_details=False):
     answer = classify(sentence)
     if answer:
         while answer:
-            for i in intents['intents']:
+            for i in intents['testData']:
                 if i['tag'] == answer[0][0]:
                     #selects a resonse from the intent
                     return print(random.choice(i['responses']))
             results.pop(0)
 
-response("what are good drama movies")
+movie_title = "hi"
+while movie_title != "exit":
+	movie_title = input("Enter a movie title ")
+	response(movie_title)
