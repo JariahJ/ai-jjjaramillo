@@ -71,13 +71,24 @@ x_train = np.array(training_x)
 y_train = np.array(training_y)
 
 
-model = keras.Sequential()
-model.add(keras.layers.Dense(9, input_dim=3930,  activation = 'relu')) #44
+model = keras.Sequential() #our model
+
+#input layer
+model.add(keras.layers.Dense(9, input_dim=3930,  activation = 'relu'))
+model.add(keras.layers.BatchNormalization())
+model.add(keras.layers.Dropout(0.3))
+
+#hidden layer
+model.add(keras.layers.Dense(9, input_dim=9, activation = 'relu'))
+model.add(keras.layers.BatchNormalization())
+model.add(keras.layers.Dropout(0.3))
+
+#output layer
 model.add(keras.layers.Dense(5, activation = 'softmax')) #9
 
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-model.fit(x_train, y_train, epochs = 30, batch_size = 8)
+model.fit(x_train, y_train, epochs = 10, batch_size = 8)
 
 
 #for users sentence they input

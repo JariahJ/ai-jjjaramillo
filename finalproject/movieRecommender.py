@@ -71,8 +71,19 @@ x_train = np.array(training_x)
 y_train = np.array(training_y)
 
 
-model = keras.Sequential()
+model = keras.Sequential() # our model
+
+#input layer
 model.add(keras.layers.Dense(9, input_dim=43,  activation = 'relu'))
+model.add(keras.layers.BatchNormalization())
+model.add(keras.layers.Dropout(0.3))
+
+#hidden layer
+model.add(keras.layers.Dense(9, input_dim=9, activation = 'relu'))
+model.add(keras.layers.BatchNormalization())
+model.add(keras.layers.Dropout(0.3))
+
+#output layer
 model.add(keras.layers.Dense(8, activation = 'softmax'))
 
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
@@ -125,5 +136,5 @@ def response(sentence, user='123', show_details=False):
 
 question = "hi"
 while question != "exit":
-	question = input("Ask for a movie recommendation")
+	question = input("Ask for a movie recommendation: ")
 	response(question)
